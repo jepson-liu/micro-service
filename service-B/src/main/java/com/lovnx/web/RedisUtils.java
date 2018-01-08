@@ -2,14 +2,10 @@ package com.lovnx.web;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.io.InputStream;
-import java.util.Properties;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class RedisUtils {
@@ -22,11 +18,11 @@ public class RedisUtils {
     private static JedisPool jedisPool = null;
 
     /** Redis服务器IP */
-    private static String host="172.16.16.72";
+    private static String host="172.16.1.232";
     /** Redis的端口号 */
     private static int port=6379;
     /** 访问密码 */
-    private static String password="lemonkz9*l";
+    private static String password="";
     /** 超时时间 */
     private static int timeout=10000;
     /**
@@ -87,7 +83,7 @@ public class RedisUtils {
                 config.setMaxIdle(maxIdle);
                 config.setMaxWaitMillis(maxWaitMillis);
                 config.setTestOnBorrow(testOnBorrow);
-                jedisPool = new JedisPool(config, host, port, timeout, password);
+                jedisPool = new JedisPool(config, host, port, timeout);
                 LOGGER.info("创建Redis Pool成功.");
             }
         } catch (Exception ex) {
